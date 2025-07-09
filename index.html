@@ -40,7 +40,7 @@
     let score = 0;
 
     const jonasImg = new Image();
-    jonasImg.src = "jonas.png";
+    jonas.src = "jonas";
 
     const bird = {
       x: 50,
@@ -51,7 +51,7 @@
       jump: -4.6,
 
       draw() {
-        ctx.drawImage(jonasImg, this.x, this.y, this.w, this.h);
+        ctx.drawImage(jonas, this.x, this.y, this.w, this.h);
       },
 
       update() {
