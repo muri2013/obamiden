@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Flapzinho</title>
+  <title>Thomasbird</title>
   <style>
     body {
       margin: 0;
@@ -28,7 +28,7 @@
   </style>
 </head>
 <body>
-  <div id="score">Pontuação: 0</div>
+  <div id="score">mangos passados: 0</div>
   <canvas id="game" width="400" height="600"></canvas>
 
   <script>
@@ -38,19 +38,20 @@
     let frames = 0;
     const gravity = 0.25;
     let score = 0;
-    let best = 0;
+
+    const jonasImg = new Image();
+    jonasImg.src = "jonas.png";
 
     const bird = {
       x: 50,
       y: 150,
-      w: 30,
-      h: 30,
+      w: 40,
+      h: 40,
       speed: 0,
       jump: -4.6,
 
       draw() {
-        ctx.fillStyle = "yellow";
-        ctx.fillRect(this.x, this.y, this.w, this.h);
+        ctx.drawImage(jonasImg, this.x, this.y, this.w, this.h);
       },
 
       update() {
@@ -80,9 +81,7 @@
     function drawPipes() {
       ctx.fillStyle = "green";
       pipes.forEach(pipe => {
-        // Top
         ctx.fillRect(pipe.x, 0, pipeWidth, pipe.top);
-        // Bottom
         ctx.fillRect(pipe.x, pipe.top + pipeGap, pipeWidth, canvas.height - pipe.top - pipeGap);
       });
     }
@@ -94,7 +93,7 @@
         if (!pipe.passed && pipe.x + pipeWidth < bird.x) {
           score++;
           pipe.passed = true;
-          document.getElementById("score").textContent = `Pontuação: ${score}`;
+          document.getElementById("score").textContent = `mangos passados: ${score}`;
         }
 
         if (
@@ -110,7 +109,6 @@
         createPipe();
       }
 
-      // remove pipes fora da tela
       if (pipes.length > 0 && pipes[0].x + pipeWidth < 0) {
         pipes.shift();
       }
@@ -126,7 +124,7 @@
       bird.y = 150;
       bird.speed = 0;
       pipes.length = 0;
-      document.getElementById("score").textContent = `Pontuação: 0`;
+      document.getElementById("score").textContent = `mangos passados: 0`;
     }
 
     function loop() {
@@ -153,3 +151,4 @@
   </script>
 </body>
 </html>
+
